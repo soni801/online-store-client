@@ -6,14 +6,17 @@ async function loadProducts()
     {
         console.log(product);
         document.querySelector("#product-list").innerHTML += `
-            <tr>
-                <td><img src="${product.imageUrl}" alt="${product.name}"></td>
-                <td>${product.name}</td>
-                <td>${product.price} kr</td>
-                <td>${product.stock}</td>
-            </tr>
+            <div class="product">
+                <img src="${product.imageUrl}" alt="${product.name}">
+                <div class="horizontal">
+                    <h3>${product.name}</h3>
+                    <p><i>${product.price} kr</i></p>
+                </div>
+                <p>${product.description}</p>
+                <p class="faded breathe-before"><i>${product.stock} på lager</i></p>
+            </div>
         `;
     }
 }
 
-loadProducts();
+loadProducts().then(() => console.log("Loaded products"));
