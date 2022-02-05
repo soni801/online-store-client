@@ -51,7 +51,10 @@ h1
 #product-list
 {
     display: flex;
+    justify-content: center;
     gap: 3rem;
+    flex-wrap: wrap;
+    width: 80%;
 
     // Individual products
     .product
@@ -59,9 +62,7 @@ h1
         width: 17rem;
         padding: 1rem;
         background: $accent-dark;
-        border-radius: $roundness;
         font-family: "Barlow Condensed", sans-serif;
-        box-shadow: $shadow 0 0 1rem;
 
         // Product thumbnail
         img
@@ -69,7 +70,6 @@ h1
             object-fit: cover;
             width: 100%;
             aspect-ratio: 1;
-            border-radius: $roundness;
         }
 
         // Product title
@@ -96,3 +96,6 @@ h1
 .faded { opacity: .6; }
 .float { padding: 3rem; }
 .breathe-before { padding-top: .5rem; }
+.shadow { box-shadow: $shadow 0 0 1rem; }
+.slight-shadow { box-shadow: rgba($shadow, .4) 0 0 1.5rem; }
+.rounded { border-radius: $roundness; }
