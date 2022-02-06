@@ -59,6 +59,9 @@ h1
     // Individual products
     .product
     {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         width: 17rem;
         padding: 1rem;
         background: $accent-dark;
@@ -82,6 +85,39 @@ h1
         {
             font-size: 1.3rem;
         }
+
+        .cart
+        {
+            position: relative;
+            z-index: 0;
+
+            .cart-inner
+            {
+                fill: $foreground;
+                height: 2em;
+            }
+
+            &::before
+            {
+                content: '';
+                position: absolute;
+                margin: -.05rem -.05rem .05rem .05rem;
+                inset: 30%;
+                background: rgba($background, .2);
+                border-radius: 50%;
+                z-index: -1;
+                opacity: 0;
+                transition: 200ms ease;
+            }
+
+            &:hover::before
+            {
+                inset: -.4rem;
+                opacity: 1;
+            }
+        }
+
+
     }
 }
 
@@ -93,9 +129,18 @@ h1
     align-items: center;
 }
 
+.neutral
+{
+    color: currentColor;
+
+    &:hover { opacity: .7; }
+    &:active { opacity: .4; }
+}
+
 .faded { opacity: .6; }
 .float { padding: 3rem; }
 .breathe-before { padding-top: .5rem; }
 .shadow { box-shadow: $shadow 0 0 1rem; }
-.slight-shadow { box-shadow: rgba($shadow, .4) 0 0 1.5rem; }
+.slight-shadow { box-shadow: rgba($shadow, .3) 0 0 1.5rem; }
 .rounded { border-radius: $roundness; }
+.transition { transition: 200ms ease; }
