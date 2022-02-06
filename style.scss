@@ -10,6 +10,9 @@
         2.1 Title
         2.2 Product list
     3. Utility
+    4. Tags
+        4.1 Images
+        4.2 Selection
  */
 
 // 1.1 Fonts
@@ -137,6 +140,12 @@ h1
     &:active { opacity: .4; }
 }
 
+.invert-selection::selection, .invert-selection ::selection
+{
+    background: $foreground;
+    color: $accent-dark;
+}
+
 .faded { opacity: .6; }
 .float { padding: 3rem; }
 .breathe-before { padding-top: .5rem; }
@@ -144,3 +153,15 @@ h1
 .slight-shadow { box-shadow: rgba($shadow, .3) 0 0 1.5rem; }
 .rounded { border-radius: $roundness; }
 .transition { transition: 200ms ease; }
+
+// 4.1 Images
+img
+{
+    user-select: none;
+}
+
+// 4.2 Selection
+::selection
+{
+    background: rgba($accent-dark, .6);
+}

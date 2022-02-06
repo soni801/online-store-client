@@ -9,7 +9,7 @@ async function loadProducts()
     for (const product of products)
     {
         document.querySelector("#product-list").innerHTML += `
-            <div class="product shadow rounded">
+            <div class="product shadow rounded invert-selection">
                 <div class="info">
                     <img class="slight-shadow rounded" src="${product.imageUrl}" alt="${product.name}">
                     <div class="horizontal">
