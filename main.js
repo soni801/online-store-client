@@ -20,7 +20,7 @@ async function loadProducts()
                     <p>${product.description}</p>
                 </div>
                 <div class="horizontal breathe-before">
-                    <p class="faded"><i>${product.stock} på lager</i></p>
+                    <p class="faded"><i>${product.stock.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} på lager</i></p>
                     <span class="cart transition"></span>
                 </div>
             </div>
