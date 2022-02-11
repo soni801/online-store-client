@@ -43,9 +43,14 @@ $("#passphrase").keyup(e =>
 // Login button event listener
 $("#login-button").click(async function ()
 {
+    // Remove error display
+    document.querySelector("#incorrect").style.display = "none";
+
+    // Store credentials
     const username = document.querySelector("#username").value;
     const passphrase = document.querySelector("#passphrase").value;
 
+    // Make a request to the API
     const result = (await axios({
         method: "get",
         url: `${api}/auth`,
@@ -55,10 +60,17 @@ $("#login-button").click(async function ()
         }
     })).data;
 
+    // Store success
     const success = result !== "";
     console.log(success ? "Login successful" : "Incorrect username/password");
 
-    if (success) localStorage["token"] = result;
+    // Store success and update UI
+    if (success)
+    {
+        localStorage["token"] = result;
+        window.location.replace("/");
+    }
+    else document.querySelector("#incorrect").style.display = "unset";
 });
 
 // Fetch product list on load
