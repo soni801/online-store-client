@@ -64,10 +64,18 @@ $("#login-button").click(async function ()
     const success = result !== "";
     console.log(success ? "Login successful" : "Incorrect username/password");
 
-    // Store success and update UI
     if (success)
     {
-        localStorage["token"] = result;
+        // Store user details
+        localStorage["user"] = JSON.stringify((await axios({
+            method: "get",
+            url: `${api}/users`,
+            headers: {
+                token: result
+            }
+        })).data);
+
+        // Redirect to front page
         window.location.replace("/");
     }
     else document.querySelector("#incorrect").style.display = "unset";
@@ -75,6 +83,27 @@ $("#login-button").click(async function ()
 
 // Fetch product list on load
 loadProducts().then(() => console.log("Loaded products"));
+
+// Load user header
+if (localStorage["user"])
+{
+    // Fetch user from storage
+    const user = JSON.parse(localStorage["user"]);
+
+    // Load UI
+    document.querySelector("#header.right").innerHTML = `
+        <img src="${user.profilePictureUrl}" alt="${user.firstName}">
+        <p>${user.firstName} ${user.lastName}</p>
+        <button id="logout-button" class="visible-hover button">Logg ut</button>
+    `;
+
+    // Add event listener
+    $("#logout-button").click(() =>
+    {
+        localStorage["user"] = undefined;
+        window.location.reload();
+    });
+}
 
 /* Resources
     - Number formatting: https://stackoverflow.com/a/2901298

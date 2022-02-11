@@ -5,12 +5,13 @@
             1.2.1 Colors
             1.2.2 Look and feel
             1.2.3 Font size
+            1.2.4 Font families
         1.3 Reset
         1.4 General styling
     2. Sections
         2.1 Title
         2.2 Product list
-        2.3 Header buttons
+        2.3 Header
         2.4 Login form
     3. Utility
     4. Tags
@@ -18,6 +19,7 @@
         4.2 Selection
         4.3 Text
         4.4 Input
+        4.5 Buttons
  */
 
 // 1.1 Fonts
@@ -40,6 +42,10 @@ $product-title-size: 2.2rem;
 $info-text-size: 1.2rem;
 $error-text-size: 1rem;
 
+// 1.2.4 Font families
+$serif: "Libre Baskerville", serif;
+$sans-serif: "Barlow Condensed", sans-serif;
+
 // 1.3 Reset
 * { margin: 0; }
 
@@ -52,7 +58,7 @@ body
 
     background: $background;
     color: $foreground;
-    font-family: 'Libre Baskerville', serif;
+    font-family: $serif;
 }
 
 // 2.1 Title
@@ -79,7 +85,7 @@ h1
         width: 15rem;
         padding: 1rem;
         background: $accent-dark;
-        font-family: "Barlow Condensed", sans-serif;
+        font-family: $sans-serif;
 
         // Product thumbnail
         img
@@ -122,18 +128,27 @@ h1
     }
 }
 
-// 2.3 Header buttons
-#login, #back
+// 2.3 Header
+#header
 {
     display: flex;
+    align-items: center;
     gap: .5rem;
     position: absolute;
     top: 0;
-    right: 0;
     padding: 1rem;
     width: max-content;
 
-    &#back { left: 0; }
+    &.right { right: 0; }
+    &.left { left: 0; }
+
+    img
+    {
+        object-fit: cover;
+        height: 3rem;
+        aspect-ratio: 1;
+        border-radius: 50%;
+    }
 }
 
 // 2.4 Login form
@@ -215,6 +230,13 @@ input
     color: $foreground;
     border: none;
     border-radius: $roundness;
+    font-family: $serif;
 
     &::placeholder { color: $foreground; }
+}
+
+// 4.5 Buttons
+button
+{
+    font-family: $serif;
 }
