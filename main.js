@@ -29,6 +29,17 @@ async function loadProducts()
     $(".cart").load("/assets/icons/cart.svg");
 }
 
+// Input field listeners
+$("#username").keyup(e =>
+{
+    if (e.keyCode === 13) $("#passphrase").focus();
+});
+
+$("#passphrase").keyup(e =>
+{
+    if (e.keyCode === 13) $("#login-button").click();
+});
+
 // Login button event listener
 $("#login-button").click(async function ()
 {
@@ -46,7 +57,7 @@ $("#login-button").click(async function ()
 
     const success = result !== "";
     console.log(success ? "Login successful" : "Incorrect username/password");
-    
+
     if (success) localStorage["token"] = result;
 });
 
