@@ -29,6 +29,27 @@ async function loadProducts()
     $(".cart").load("/assets/icons/cart.svg");
 }
 
+// Login button event listener
+$("#login-button").click(async function ()
+{
+    const username = document.querySelector("#username").value;
+    const passphrase = document.querySelector("#passphrase").value;
+
+    const result = (await axios({
+        method: "get",
+        url: `${api}/auth`,
+        headers: {
+            user: username,
+            pass: passphrase
+        }
+    })).data;
+
+    const success = result !== "";
+    console.log(success ? "Login successful" : "Incorrect username/password");
+    
+    if (success) localStorage["token"] = result;
+});
+
 // Fetch product list on load
 loadProducts().then(() => console.log("Loaded products"));
 
