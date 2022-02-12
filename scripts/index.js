@@ -50,7 +50,7 @@ if (localStorage["user"])
     // Add event listener
     $("#logout-button").click(() =>
     {
-        localStorage["user"] = undefined;
+        localStorage.removeItem("user");
         window.location.reload();
     });
 }
