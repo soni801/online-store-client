@@ -15,7 +15,7 @@ if (window.location.search === "?new") // Sign up
             <input id="email" placeholder="E-postadresse">
         </label>
         <label>
-            <input id="phone-number" placeholder="Tlf.nr.">
+            <input id="phone-number" placeholder="Tlf.nr." type="tel">
         </label>
         <div>
             <label>
