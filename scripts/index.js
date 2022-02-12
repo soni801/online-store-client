@@ -8,7 +8,7 @@ async function loadProducts()
         document.querySelector("#product-list").innerHTML += `
             <div class="product shadow rounded invert-selection">
                 <div class="info">
-                    <img class="slight-shadow rounded" src="${product.imageUrl}" alt="${product.name}">
+                    <img class="slight-shadow rounded square" src="${product.imageUrl}" alt="${product.name}">
                     <div class="horizontal">
                         <h3>${product.name}</h3>
                         <p><i>${product.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kr</i></p>
@@ -34,7 +34,7 @@ if (localStorage["user"])
 {
     // Load UI
     document.querySelector("#header.right").innerHTML = `
-        <img src="${user.profilePictureUrl}" alt="${user.firstName}">
+        <img class="square" src="${user.profilePictureUrl}" alt="${user.firstName}">
         <a href="/profile" class="clean-text visible-hover"><p>${user.firstName} ${user.lastName}</p></a>
         <button id="logout-button" class="visible-hover button">Logg ut</button>
     `;

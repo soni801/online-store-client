@@ -91,9 +91,7 @@ h1
         // Product thumbnail
         img
         {
-            object-fit: cover;
             width: 100%;
-            aspect-ratio: 1;
         }
 
         .cart
@@ -143,11 +141,9 @@ h1
     &.right { right: 0; }
     &.left { left: 0; }
 
-    img // TODO: Make utility class
+    img
     {
-        object-fit: cover;
         height: 3rem;
-        aspect-ratio: 1;
         border-radius: 50%;
     }
 }
@@ -178,9 +174,7 @@ h1
 
         img
         {
-            object-fit: cover;
             height: 10rem;
-            aspect-ratio: 1;
             border-radius: 50%;
         }
     }
@@ -227,6 +221,12 @@ h1
 {
     color: $accent-dark;
     font-size: $error-text-size;
+}
+
+.square
+{
+    object-fit: cover;
+    aspect-ratio: 1;
 }
 
 .faded { opacity: .6; }
