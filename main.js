@@ -99,11 +99,15 @@ if (localStorage["user"])
     const user = JSON.parse(localStorage["user"]);
 
     // Load UI
-    document.querySelector("#header.right").innerHTML = `
+    try // This is here to continue code after error. TODO: Move this to its own file
+    {
+        document.querySelector("#header.right").innerHTML = `
         <img src="${user.profilePictureUrl}" alt="${user.firstName}">
-        <p>${user.firstName} ${user.lastName}</p>
+        <a href="/profile" class="clean-text visible-hover"><p>${user.firstName} ${user.lastName}</p></a>
         <button id="logout-button" class="visible-hover button">Logg ut</button>
     `;
+    }
+    catch {}
 
     // Add event listener
     $("#logout-button").click(() =>
@@ -111,6 +115,19 @@ if (localStorage["user"])
         localStorage["user"] = undefined;
         window.location.reload();
     });
+}
+
+// Load user info
+if (localStorage["user"])
+{
+    // Fetch user from storage
+    const user = JSON.parse(localStorage["user"]);
+
+    document.querySelector("#personalia img").src = `${user.profilePictureUrl}`;
+    document.querySelector("#personalia div :nth-child(1)").innerHTML = `${user.firstName} ${user.lastName}`;
+    document.querySelector("#personalia div :nth-child(2)").innerHTML = `${user.credentials.username}`;
+    document.querySelector("#account-info :nth-child(2)").innerHTML = `<i>${user.email}</i>`;
+    document.querySelector("#account-info :nth-child(5)").innerHTML = `<i>(+47) ${user.phoneNumber.toString().substring(0, 3)} ${user.phoneNumber.toString().substring(3, 5)} ${user.phoneNumber.toString().substring(5)}</i>`;
 }
 
 /* Resources

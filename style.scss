@@ -13,6 +13,7 @@
         2.2 Product list
         2.3 Header
         2.4 Login form
+        2.5 User info
     3. Utility
     4. Tags
         4.1 Images
@@ -142,7 +143,7 @@ h1
     &.right { right: 0; }
     &.left { left: 0; }
 
-    img
+    img // TODO: Make utility class
     {
         object-fit: cover;
         height: 3rem;
@@ -157,6 +158,37 @@ h1
     display: flex;
     flex-direction: column;
     gap: .5rem;
+}
+
+// 2.5 User info
+#user-info
+{
+    display: flex;
+    justify-content: space-between;
+    width: calc(100vw - 4rem);
+    padding: 1rem;
+    box-sizing: border-box;
+    background: $background-light;
+
+    #personalia
+    {
+        display: flex;
+        gap: 2rem;
+        white-space: nowrap;
+
+        img
+        {
+            object-fit: cover;
+            height: 10rem;
+            aspect-ratio: 1;
+            border-radius: 50%;
+        }
+    }
+
+    #account-info
+    {
+        text-align: right;
+    }
 }
 
 // 3. Utility
