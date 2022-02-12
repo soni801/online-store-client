@@ -232,10 +232,12 @@ h1
 .faded { opacity: .6; }
 .float { padding: 3rem; }
 .breathe-before { padding-top: .5rem; }
+.breathe-after { margin-bottom: 1rem; }
 .shadow { box-shadow: $shadow 0 0 1rem; }
 .slight-shadow { box-shadow: rgba($shadow, .3) 0 0 1.5rem; }
 .rounded { border-radius: $roundness; }
 .clean-text { text-decoration: none; }
+.long { width: 20rem; }
 
 // 4.1 Images
 img

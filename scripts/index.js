@@ -1,9 +1,17 @@
-// Function for fetching product list from the API
-async function loadProducts()
-{
-    const products = (await axios.get(`${api}/products/all`)).data;
+// Variables
+let products;
 
-    for (const product of products)
+// Function for fetching product list from the API
+async function fetchProducts()
+{
+    products = (await axios.get(`${api}/products/all`)).data;
+}
+
+// Function for loading product list into UI
+function loadProducts(list = products)
+{
+    document.querySelector("#product-list").innerHTML = "";
+    for (const product of list)
     {
         document.querySelector("#product-list").innerHTML += `
             <div class="product shadow rounded invert-selection">
@@ -27,7 +35,7 @@ async function loadProducts()
 }
 
 // Fetch product list on load
-loadProducts().then(() => console.log("Loaded products"));
+fetchProducts().then(() => loadProducts());
 
 // Load user header
 if (localStorage["user"])
@@ -46,3 +54,9 @@ if (localStorage["user"])
         window.location.reload();
     });
 }
+
+// Search field listener
+$("#search").keyup(() =>
+{
+    loadProducts(products.filter(p => p.name.toLowerCase().includes(document.querySelector("#search").value.toLowerCase())));
+});
