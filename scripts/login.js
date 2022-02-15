@@ -90,11 +90,11 @@ $("#login-button").click(async function ()
     {
         // Make a request to the API
         const result = (await axios({
-            method: "get",
+            method: "post",
             url: `${api}/auth`,
-            headers: {
-                user: username,
-                pass: passphrase
+            data: {
+                Username: username,
+                Passphrase: passphrase
             }
         })).data;
 
@@ -145,24 +145,23 @@ $("#signup-button").click(async function ()
         const createResult = (await axios({
             method: "post",
             url: `${api}/users`,
-            headers: {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                phoneNumber: phoneNumber,
-                username: username,
-                passphrase: passphrase,
-                profilePictureUrl: "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+            data: {
+                FirstName: firstName,
+                LastName: lastName,
+                Email: email,
+                PhoneNumber: phoneNumber,
+                Username: username,
+                Passphrase: passphrase
             }
         })).data;
 
         // Get user
         const getResult = (await axios({
-            method: "get",
+            method: "post",
             url: `${api}/auth`,
-            headers: {
-                user: username,
-                pass: passphrase
+            data: {
+                Username: username,
+                Passphrase: passphrase
             }
         })).data;
 
