@@ -35,24 +35,71 @@ function loadProducts(list = products)
     {
         if (localStorage["user"])
         {
-            cart.push(products[e.currentTarget.getAttribute("data-product-index")]);
+            const chosen = products[e.currentTarget.getAttribute("data-product-index")];
+            let saved = false;
+
+            for (const product of cart)
+            {
+                if (product.product === chosen)
+                {
+                    product.quantity++;
+                    saved = true;
+                }
+            }
+
+            if (!saved)
+            {
+                cart.push({
+                    product: products[e.currentTarget.getAttribute("data-product-index")],
+                    quantity: 1
+                });
+            }
+
             localStorage["cart"] = JSON.stringify(cart);
+            refreshCart();
         }
         else
         {
-            e.currentTarget.querySelector(".confirmation-popup").innerHTML = "Logg inn for å legge<br>til i handlekurven";
-            e.currentTarget.querySelector(".confirmation-popup").classList.add("error-background");
+            e.currentTarget.querySelector(".popup").innerHTML = "Logg inn for å legge<br>til i handlekurven";
+            e.currentTarget.querySelector(".popup").classList.add("error-background");
 
             setTimeout(() =>
             {
-                e.currentTarget.querySelector(".confirmation-popup").innerHTML = "Lagt til i handlekurven";
-                e.currentTarget.querySelector(".confirmation-popup").classList.remove("error-background");
+                e.currentTarget.querySelector(".popup").innerHTML = "Lagt til i handlekurven";
+                e.currentTarget.querySelector(".popup").classList.remove("error-background");
             }, 2250);
         }
 
-        e.currentTarget.querySelector(".confirmation-popup").style.opacity = "1";
-        setTimeout(() => e.currentTarget.querySelector(".confirmation-popup").style.opacity = "0", 2000);
+        e.currentTarget.querySelector(".popup").style.opacity = "1";
+        setTimeout(() => e.currentTarget.querySelector(".popup").style.opacity = "0", 2000);
     });
+}
+
+// Function for refreshing cart button
+function refreshCart()
+{
+    document.querySelector("#cart-button").innerHTML = `
+        <span class="visible-hover button">Handlekurv (${cart.length})</span>
+        <div class="popup rounded unset">${(() =>
+        {
+            let output = "";
+            
+            for (const product of cart)
+            {
+                output += `
+                    <div class="horizontal">
+                        <div class="horizontal">
+                            <img src="${product.product.imageUrl}" alt="${product.product.name}">
+                            <p>${product.product.name}</p>
+                        </div>
+                        <p>x${product.quantity}</p>
+                    </div>
+                `;
+            }
+            
+            return output;
+        })()}</div>
+    `;
 }
 
 // Fetch product list on load
@@ -65,10 +112,19 @@ if (localStorage["user"])
     document.querySelector("#header.right").innerHTML = `
         <img class="square" src="${user.profilePictureUrl}" alt="${user.firstName}">
         <a href="/profile" class="clean-text visible-hover"><p>${user.firstName} ${user.lastName}</p></a>
+        <button id="cart-button" class="clean relative"></button>
         <button id="logout-button" class="visible-hover button">Logg ut</button>
     `;
 
-    // Add event listener
+    refreshCart();
+
+    // Add event listeners
+    $("#cart-button").click(e =>
+    {
+        let popupStyle = e.currentTarget.querySelector(".popup").style;
+        popupStyle.opacity = popupStyle.opacity === "1" ? "0" : "1";
+    });
+
     $("#logout-button").click(() =>
     {
         localStorage.removeItem("user");
