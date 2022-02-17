@@ -99,13 +99,19 @@ function refreshCart()
             
             if (output === "") output = "Handlekurven din er tom.<br>Legg til et produkt,<br>og prøv igjen!";
             else output += `
-                <button class="visible-hover button">Tøm</button>
-                <button class="visible-hover button">Kasse</button>
+                <button id="empty-button" class="visible-hover button">Tøm</button>
+                <button id="checkout-button" class="visible-hover button">Kasse</button>
             `;
             
             return output;
         })()}</div>
     `;
+
+    $("#empty-button").click(() =>
+    {
+        cart.length = 0;
+        refreshCart();
+    });
 }
 
 // Fetch product list on load
