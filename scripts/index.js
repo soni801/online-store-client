@@ -31,10 +31,27 @@ function loadProducts(list = products)
         `;
     }
 
-    $(".cart").load("/assets/icons/cart.svg").click(e =>
+    $(".cart").load("/assets/icons/cart.html").click(e =>
     {
-        cart.push(products[e.currentTarget.getAttribute("data-product-index")]);
-        localStorage["cart"] = JSON.stringify(cart);
+        if (localStorage["user"])
+        {
+            cart.push(products[e.currentTarget.getAttribute("data-product-index")]);
+            localStorage["cart"] = JSON.stringify(cart);
+        }
+        else
+        {
+            e.currentTarget.querySelector(".confirmation-popup").innerHTML = "Logg inn for å legge<br>til i handlekurven";
+            e.currentTarget.querySelector(".confirmation-popup").classList.add("error-background");
+
+            setTimeout(() =>
+            {
+                e.currentTarget.querySelector(".confirmation-popup").innerHTML = "Lagt til i handlekurven";
+                e.currentTarget.querySelector(".confirmation-popup").classList.remove("error-background");
+            }, 2250);
+        }
+
+        e.currentTarget.querySelector(".confirmation-popup").style.opacity = "1";
+        setTimeout(() => e.currentTarget.querySelector(".confirmation-popup").style.opacity = "0", 2000);
     });
 }
 

@@ -124,6 +124,21 @@ h1
                 inset: -.4rem;
                 opacity: 1;
             }
+
+            .confirmation-popup
+            {
+                opacity: 0;
+                position: absolute;
+                top: -3rem;
+                left: 50%;
+                width: max-content;
+                padding: .5rem;
+                background: $foreground;
+                color: $background;
+                transition: opacity 250ms ease;
+                transform: translateX(-50%);
+                pointer-events: none;
+            }
         }
     }
 }
@@ -228,6 +243,12 @@ h1
 {
     color: $accent-dark;
     font-size: $error-text-size;
+}
+
+.error-background
+{
+    background: $accent-light !important;
+    color: rgba($background, .7) !important;
 }
 
 .square
