@@ -100,7 +100,7 @@ function refreshCart()
             if (output === "") output = "Handlekurven din er tom.<br>Legg til et produkt,<br>og prøv igjen!";
             else output += `
                 <button id="empty-button" class="visible-hover button">Tøm</button>
-                <button id="checkout-button" class="visible-hover button">Kasse</button>
+                <a class="visible-hover button clean-text" href="/checkout">Kasse</a>
             `;
             
             return output;

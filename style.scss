@@ -43,6 +43,7 @@ $roundness: .5rem;
 $product-title-size: 2.2rem;
 $info-text-size: 1.2rem;
 $error-text-size: 1rem;
+$button-text-size: .9rem;
 
 // 1.2.4 Font families
 $serif: "Libre Baskerville", serif;
@@ -298,6 +299,7 @@ input
 {
     padding: .5rem 1rem;
     font-family: $serif;
+    font-size: $button-text-size;
     color: $foreground;
     background: $accent-dark;
     border: none;
