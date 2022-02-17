@@ -25,13 +25,17 @@ function loadProducts(list = products)
                 </div>
                 <div class="horizontal breathe-before">
                     <p class="faded"><i>${product.stock.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} på lager</i></p>
-                    <span class="cart transition"></span>
+                    <span class="cart transition" data-product-index="${products.indexOf(product)}"></span>
                 </div>
             </div>
         `;
     }
 
-    $(".cart").load("/assets/icons/cart.svg");
+    $(".cart").load("/assets/icons/cart.svg").click(e =>
+    {
+        cart.push(products[e.currentTarget.getAttribute("data-product-index")]);
+        localStorage["cart"] = JSON.stringify(cart);
+    });
 }
 
 // Fetch product list on load

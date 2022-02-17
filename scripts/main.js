@@ -1,5 +1,6 @@
 // Execution data
 const api = "https://api.soni.yessness.com";
 
-// Fetch user from storage
-const user = JSON.parse(localStorage["user"]);
+// Load storage into memory
+const user = localStorage["user"] ? JSON.parse(localStorage["user"]) : null;
+const cart = localStorage["cart"] ? JSON.parse(localStorage["cart"]) : [];
