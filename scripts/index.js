@@ -80,7 +80,7 @@ function refreshCart()
 {
     document.querySelector("#cart-button").innerHTML = `
         <span class="visible-hover button">Handlekurv (${cart.length})</span>
-        <div class="popup rounded unset">${(() =>
+        <div class="popup rounded unset no-display">${(() =>
         {
             let output = "";
             
@@ -98,6 +98,11 @@ function refreshCart()
             }
             
             if (output === "") output = "Handlekurven din er tom.<br>Legg til et produkt,<br>og prøv igjen!";
+            else output += `
+                <button class="visible-hover button">Tøm</button>
+                <button class="visible-hover button">Kasse</button>
+            `;
+            
             return output;
         })()}</div>
     `;
@@ -123,7 +128,17 @@ if (localStorage["user"])
     $("#cart-button").click(e =>
     {
         let popupStyle = e.currentTarget.querySelector(".popup").style;
-        popupStyle.opacity = popupStyle.opacity === "1" ? "0" : "1";
+
+        if (popupStyle.opacity === "1")
+        {
+            popupStyle.opacity = "0";
+            setTimeout(() => popupStyle.display = "none", 250);
+        }
+        else
+        {
+            popupStyle.display = "initial";
+            setTimeout(() => popupStyle.opacity = "1", 1);
+        }
     });
 
     $("#logout-button").click(() =>
