@@ -40,7 +40,7 @@ function loadProducts(list = products)
 
             for (const product of cart)
             {
-                if (product.product === chosen)
+                if (product.product.id === chosen.id)
                 {
                     product.quantity++;
                     saved = true;
@@ -50,7 +50,7 @@ function loadProducts(list = products)
             if (!saved)
             {
                 cart.push({
-                    product: products[e.currentTarget.getAttribute("data-product-index")],
+                    product: chosen,
                     quantity: 1
                 });
             }
@@ -89,7 +89,7 @@ function refreshCart()
                 output += `
                     <div class="horizontal">
                         <div class="horizontal">
-                            <img src="${product.product.imageUrl}" alt="${product.product.name}">
+                            <img class="square" src="${product.product.imageUrl}" alt="${product.product.name}">
                             <p>${product.product.name}</p>
                         </div>
                         <p>x${product.quantity}</p>
@@ -97,6 +97,7 @@ function refreshCart()
                 `;
             }
             
+            if (output === "") output = "Handlekurven din er tom.<br>Legg til et produkt,<br>og prøv igjen!";
             return output;
         })()}</div>
     `;

@@ -315,4 +315,5 @@ input
     transition: opacity 250ms ease;
     transform: translateX(-50%);
     pointer-events: none;
+    user-select: none;
 }
