@@ -2,7 +2,7 @@
 if (window.location.search === "?new") // Sign up
 {
     document.querySelector("h1").innerHTML = "Registrer";
-    document.querySelector("#login-form").innerHTML = `
+    document.querySelector("#form").innerHTML = `
         <div>
             <label>
                 <input id="first-name" placeholder="Fornavn">
@@ -30,7 +30,7 @@ if (window.location.search === "?new") // Sign up
 }
 else // Log in
 {
-    document.querySelector("#login-form").innerHTML = `
+    document.querySelector("#form").innerHTML = `
         <label>
             <input id="username" placeholder="Brukernavn">
         </label>
