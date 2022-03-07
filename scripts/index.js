@@ -109,7 +109,7 @@ function refreshCart()
 
     $("#empty-button").click(() =>
     {
-        cart.length = 0;
+        emptyCart();
         refreshCart();
     });
 }

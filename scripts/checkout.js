@@ -24,10 +24,39 @@ $("#address-line").keyup(e =>
 
 $("#postal-number").keyup(e =>
 {
-    if (e.keyCode === 13) $("#postal-place").focus();
+    if (e.keyCode === 13) $("#country").focus();
 });
 
-$("#postal-place").keyup(e =>
+$("#country").keyup(e =>
 {
-    if (e.keyCode === 13) $("#signup-button").click();
+    if (e.keyCode === 13) $("#buy-button").click();
+});
+
+$("#buy-button").click(async function ()
+{
+    const addressName = document.querySelector("#address-name").value;
+    const addressLine = document.querySelector("#address-line").value;
+    const postalNumber = document.querySelector("#postal-number").value;
+    const country = document.querySelector("#country").value;
+
+    let totalPrice = 0;
+    for (const product of cart) totalPrice += product.product.price;
+
+    const orderId = (await axios({
+        method: "post",
+        url: `${api}/orders/new`,
+        data: {
+            Token: user.credentials.token,
+            TotalPrice: totalPrice,
+            AddressName: addressName,
+            AddressLine: addressLine,
+            PostalNumber: postalNumber,
+            Country: country
+        }
+    })).data;
+
+    for (const product of cart) await axios.post(`${api}/orders/link?orderId=${orderId}&productId=${product.product.id}&quantity=${product.quantity}`);
+
+    emptyCart();
+    window.location.replace("/");
 });
