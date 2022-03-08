@@ -253,6 +253,14 @@ h1
     border: none;
 }
 
+.text-block
+{
+    width: 65ch;
+    line-height: 1.5em;
+
+    p { padding: 1rem; }
+}
+
 .faded { opacity: .6; }
 .float { padding: 3rem; }
 .breathe-before { margin-top: .5rem; }
@@ -264,6 +272,8 @@ h1
 .long { width: 20rem; }
 .relative { position: relative; }
 .no-display { display: none; }
+.accent { color: $accent-light; }
+.center { text-align: center; }
 
 // 4.1 Images
 img
