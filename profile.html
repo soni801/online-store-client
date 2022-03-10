@@ -18,12 +18,14 @@
         <meta name="theme-color" content="#c7493a">
     </head>
     <body>
+        <!-- Header -->
         <h1 class="float">Profil</h1>
         <div id="header" class="left">
             <a class="visible-hover button clean-text" href="/">Tilbake</a>
         </div>
 
-        <div id="user-info">
+        <!-- User overview -->
+        <div class="box">
             <div id="personalia">
                 <img class="square" src="" alt="">
                 <div>
@@ -40,8 +42,13 @@
             </div>
         </div>
 
+        <!-- Delete button -->
         <button id="delete-button" class="button visible-hover breathe-before">Slett konto</button>
         <p id="incorrect" class="error float"></p>
+
+        <!-- List of orders -->
+        <h3 class="float">Mine bestillinger</h3>
+        <div id="orders"></div>
 
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

@@ -178,31 +178,16 @@ h1
 }
 
 // 2.5 User info
-#user-info
+#personalia
 {
     display: flex;
-    justify-content: space-between;
-    width: calc(100vw - 4rem);
-    padding: 1rem;
-    box-sizing: border-box;
-    background: $background-light;
+    gap: 2rem;
+    white-space: nowrap;
 
-    #personalia
+    img
     {
-        display: flex;
-        gap: 2rem;
-        white-space: nowrap;
-
-        img
-        {
-            height: 10rem;
-            border-radius: 50%;
-        }
-    }
-
-    #account-info
-    {
-        text-align: right;
+        height: 10rem;
+        border-radius: 50%;
     }
 }
 
@@ -259,6 +244,22 @@ h1
     line-height: 1.5em;
 
     p { padding: 1rem; }
+}
+
+.box
+{
+    display: flex;
+    justify-content: space-between;
+    width: calc(100vw - 4rem);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    background: $background-light;
+
+    > :nth-child(2)
+    {
+        text-align: right;
+    }
 }
 
 .faded { opacity: .6; }

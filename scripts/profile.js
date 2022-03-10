@@ -51,3 +51,33 @@ $("#delete-button").click(async () =>
         else document.querySelector("#incorrect").innerHTML = "Noe gikk galt.";
     }
 });
+
+// Load orders
+async function loadOrders()
+{
+    const result = (await axios.get(`${api}/orders/user?id=${user.id}`)).data;
+
+    for (const order of result)
+    {
+        document.querySelector("#orders").innerHTML += `
+            <div class="box">
+                <div>
+                    <h2>Ordrenr.</h2>
+                    <h4>${order.id}</h4>
+                    <br><br>
+                    <h2>Total pris</h2>
+                    <h4>${order.totalPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kr</h4>
+                </div>
+                <div>
+                    <h2>Status</h2>
+                    <h4>${order.status}</h4>
+                    <br><br>
+                    <h2>Bestillingstidspunkt</h2>
+                    <h4>${new Date(order.timestamp).toLocaleString()}</h4>
+                </div>
+            </div>
+        `;
+    }
+}
+
+loadOrders().then(() => console.log("Loaded orders"));
