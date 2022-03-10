@@ -27,6 +27,7 @@ if (window.location.search === "?new") // Sign up
         </div>
         <button id="signup-button" class="visible-hover button">Registrer</button>
     `;
+    document.querySelector("#redirection").innerHTML = `Allerede registrert? <a href="/login" class="accent visible-hover">Logg inn</a>!`;
 }
 else // Log in
 {
